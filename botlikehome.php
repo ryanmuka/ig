@@ -12,7 +12,7 @@ $sleep = getComment('Enter your sleep here (Min 600): ');
 echo '############################################################' . PHP_EOL . PHP_EOL;
 $login = login($u, $p);
 if ($login['status'] == 'success') {
-echo '[ * ] Login as '.$login['username'].' Success!' . PHP_EOL;
+echo '[ * ] Login as '.$login['username'].' Success Sob Xixi!' . PHP_EOL;
 $data_login = array('username' => $login['username'],'csrftoken'	=> $login['csrftoken'],'sessionid'	=> $login['sessionid']);
 				while(true){
 		    $profile = getHome($data_login);
