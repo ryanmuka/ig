@@ -1,51 +1,45 @@
 <?php
-date_default_timezone_set('Asia/Jakarta');
+##original by Firdy##
+//Edited by ikiganteng
 define("OS", strtolower(PHP_OS));
 header('Content-Type: text/html; charset=utf-8');
 error_reporting(0);
-
-function getStr($string, $start, $end)
-{
-    $str = explode($start, $string);
-    $str = explode($end, $str[1]);
+function getStr($string,$start,$end){
+    $str = explode($start,$string);
+    $str = explode($end,$str[1]);
     return $str[0];
 }
 
-function RandStr($randstr)
-{
+function RandStr($randstr){ 
     $char = 'qwertyuiopasdfghjklzxcvbnm';
-    $char .= 'QWERTYUIOPASDFGHJKLZXCVBNM';
-    $char .= '0123456789';
+    $char .= 'QWERTYUIOPASDFGHJKLZXCVBNM'; 
+    $char .= '0123456789'; 
 
-    $str = '';
-    for ($i = 0;$i < $randstr;$i++)
-    {
-        $pos = rand(0, strlen($char) - 1);
-        $str .= $char{$pos};
-    }
-    return $str;
+    $str = ''; 
+    for ($i = 0; $i < $randstr; $i++ ) { 
+        $pos = rand(0, strlen($char)-1); 
+        $str .= $char{$pos}; 
+    } 
+    return $str; 
 }
-function RandInt($randstr)
-{
-    $char = '0123456789';
-    $str = '';
-    for ($i = 0;$i < $randstr;$i++)
-    {
-        $pos = rand(0, strlen($char) - 1);
-        $str .= $char{$pos};
-    }
-    return $str;
+function RandInt($randstr){ 
+    $char = '0123456789'; 
+    $str = ''; 
+    for ($i = 0; $i < $randstr; $i++ ) { 
+        $pos = rand(0, strlen($char)-1); 
+        $str .= $char{$pos}; 
+    } 
+    return $str; 
 }
 
-/*function copycat()
+function copycat()
 {
     $data = 'IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiAKIC8kJCQkJCQgIC8kJCQkJCQgIC8kJCQkJCQkJCAgICAgICAgICAgICAgICAgIC8kJCAgICAgICAgICAKfF8gICQkXy8gLyQkX18gICQkfF9fICAkJF9fLyAgICAgICAgICAgICAgICAgfCAkJCAgICAgICAgICAKICB8ICQkICB8ICQkICBcX18vICAgfCAkJCAgLyQkJCQkJCAgIC8kJCQkJCQgfCAkJCAgLyQkJCQkJCQKICB8ICQkICB8ICQkIC8kJCQkICAgfCAkJCAvJCRfXyAgJCQgLyQkX18gICQkfCAkJCAvJCRfX19fXy8KICB8ICQkICB8ICQkfF8gICQkICAgfCAkJHwgJCQgIFwgJCR8ICQkICBcICQkfCAkJHwgICQkJCQkJCAKICB8ICQkICB8ICQkICBcICQkICAgfCAkJHwgJCQgIHwgJCR8ICQkICB8ICQkfCAkJCBcX19fXyAgJCQKIC8kJCQkJCR8ICAkJCQkJCQvICAgfCAkJHwgICQkJCQkJC98ICAkJCQkJCQvfCAkJCAvJCQkJCQkJC8KfF9fX19fXy8gXF9fX19fXy8gICAgfF9fLyBcX19fX19fLyAgXF9fX19fXy8gfF9fL3xfX19fX19fLyAKICAgIApNYWRlIHdpdGggTG92ZSA8MyBDb2RlIGJ5IEZpcmR5CiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIw==';
 
-    echo base64_decode($data) . PHP_EOL;
-} */
+    echo base64_decode($data).PHP_EOL;
+}
 
-function curl($url, $data = 0, $header = 0, $cookie = 0)
-{
+function curl($url, $data = 0, $header = 0, $cookie = 0) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -54,18 +48,15 @@ function curl($url, $data = 0, $header = 0, $cookie = 0)
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     // curl_setopt($ch, CURLOPT_VERBOSE, 1);
     curl_setopt($ch, CURLOPT_HEADER, 1);
-    if ($header)
-    {
+    if($header) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_ENCODING, "gzip");
     }
-    if ($data)
-    {
+    if($data) {
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     }
-    if ($cookie)
-    {
+    if($cookie) {
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie);
     }
@@ -74,8 +65,7 @@ function curl($url, $data = 0, $header = 0, $cookie = 0)
     return $x;
 }
 
-function curlNoHeader($url, $data = 0, $header = 0, $cookie = 0)
-{
+function curlNoHeader($url, $data = 0, $header = 0, $cookie = 0) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -84,18 +74,15 @@ function curlNoHeader($url, $data = 0, $header = 0, $cookie = 0)
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     // curl_setopt($ch, CURLOPT_VERBOSE, 1);
     curl_setopt($ch, CURLOPT_HEADER, 0);
-    if ($header)
-    {
+    if($header) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_ENCODING, "gzip");
     }
-    if ($data)
-    {
+    if($data) {
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     }
-    if ($cookie)
-    {
+    if($cookie) {
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie);
     }
@@ -104,108 +91,93 @@ function curlNoHeader($url, $data = 0, $header = 0, $cookie = 0)
     return $x;
 }
 
-function color()
-{
-    return ["LW" => (OS == "linux" ? "\e[1;37m" : "") , "WH" => (OS == "linux" ? "\e[0m" : "") , "LR" => (OS == "linux" ? "\e[1;31m" : "") , "LG" => (OS == "linux" ? "\e[1;32m" : "") , "BL" => (OS == "linux" ? "\e[1;34m" : "") , "MG" => (OS == "linux" ? "\e[1;35m" : "") , "LC" => (OS == "linux" ? "\e[1;36m" : "") , "CY" => (OS == "linux" ? "\e[1;33m" : "") ];
+function color() {
+    return [
+        "LW" => (OS == "linux" ? "\e[1;37m" : ""),
+        "WH" => (OS == "linux" ? "\e[0m" : ""),
+        "LR" => (OS == "linux" ? "\e[1;31m" : ""),
+        "LG" => (OS == "linux" ? "\e[1;32m" : ""),
+        "BL" => (OS == "linux" ? "\e[1;34m" : ""),
+        "MG" => (OS == "linux" ? "\e[1;35m" : ""),
+        "LC" => (OS == "linux" ? "\e[1;36m" : ""),
+        "CY" => (OS == "linux" ? "\e[1;33m" : "")
+    ];
 }
 
-function clear()
-{
+function clear(){
 
-    return (OS == "linux" ? system('clear') : "");
+    return (OS == "linux" ? system('clear') : "" );
 
 }
 
-function fetchCurlCookies($source)
-{
+function fetchCurlCookies($source) {
     preg_match_all('/^Set-Cookie:\s*([^;]*)/mi', $source, $matches);
     $cookies = array();
-    foreach ($matches[1] as $item)
-    {
+    foreach($matches[1] as $item) {
         parse_str($item, $cookie);
         $cookies = array_merge($cookies, $cookie);
     }
     return $cookies;
 }
 
+
 function findProfile($username, $session = 0)
 {
-    $url = 'https://instagram.com/' . $username;
-    if ($session != 0)
-    {
+    $url = 'https://instagram.com/'.$username;
+    if ($session != 0) {
         $header = array();
-        $header[] = 'Cookie: sessionid=' . $session['sessionid'] . ';';
-        $get = curl($url, 0, $header);
+        $header[] = 'Cookie: sessionid='.$session['sessionid'].';';
+        $get = curl($url,0,$header);
 
-    }
-    else
-    {
+    }else{
 
         $get = curl($url);
     }
-    if (strpos($get, 'The link you followed may be broken, or the page may have been removed.'))
-    {
+    if (strpos($get, 'The link you followed may be broken, or the page may have been removed.')) {
 
         $data = array(
             'status' => 'error',
             'details' => 'user not found'
         );
-
-    }
-    else
-    {
+    
+    }else{
 
         $data_ouput = getStr($get, '<script type="text/javascript">window._sharedData = ', ';</script>');
         $data_array = json_decode($data_ouput);
-        $result = $data_array
-            ->entry_data
-            ->ProfilePage['0']
-            ->graphql->user;
-        if (empty($result
-            ->edge_owner_to_timeline_media
-            ->edges) && $result
-            ->edge_owner_to_timeline_media->count >= 1)
-        {
-
+        $result = $data_array->entry_data->ProfilePage['0']->graphql->user;
+        if (empty($result->edge_owner_to_timeline_media->edges) && $result->edge_owner_to_timeline_media->count >= 1) {
+            
             $data = array(
                 'status' => 'error',
                 'details' => 'account private'
             );
 
-        }
-        else
-        {
+        }else{
 
-            $result = $data_array
-                ->entry_data
-                ->ProfilePage['0']
-                ->graphql->user;
+            $result = $data_array->entry_data->ProfilePage['0']->graphql->user;
             // $vid = ($result->is_video == 1) ? "yes" : "no" ;
-            $is_follow = ($result->followed_by_viewer) ? 'true' : 'false';
-            $is_private = ($result->is_private) ? 'true' : 'false';
-            $is_verified = ($result->is_verified) ? 'true' : 'false';
-            $is_polbek = ($result->follows_viewer) ? 'true' : 'false';
+            $is_follow = ($result->followed_by_viewer) ? 'true' : 'false' ;
+            $is_private = ($result->is_private) ? 'true' : 'false' ;
+            $is_verified = ($result->is_verified) ? 'true' : 'false' ;
+            $is_polbek = ($result->follows_viewer) ? 'true' : 'false' ;
 
             $data = array(
                 'status' => 'success',
                 'username' => $username,
                 'fullname' => $result->full_name,
-                'followers' => $result
-                    ->edge_followed_by->count,
-                'following' => $result
-                    ->edge_follow->count,
+                'followers' => $result->edge_followed_by->count,
+                'following' => $result->edge_follow->count,
                 'is_follow' => $is_follow,
                 'is_private' => $is_private,
-                'is_polbek' => $is_polbek,
+		'is_polbek' => $is_polbek,
                 'id' => $result->id,
                 'is_verif' => $is_verified,
-                'post' => $result
-                    ->edge_owner_to_timeline_media->count,
+                'post' => $result->edge_owner_to_timeline_media->count,
             );
-
+            
         }
     }
-
+    
     return $data;
 }
 
@@ -213,10 +185,10 @@ function getProfile($session)
 {
     $url = 'https://www.instagram.com/accounts/edit/?__a=1';
     $header = array(
-        'Cookie: sessionid=' . $session['sessionid'] . ';',
+        'Cookie: sessionid='.$session['sessionid'].';',
     );
 
-    $get = curl($url, 0, $header);
+    $get = curl($url,0,$header);
 
     $first_name = getStr($get, '{"first_name":"', '","');
     $last_name = getStr($get, '"last_name":"', '","');
@@ -235,58 +207,61 @@ function getProfile($session)
     return $data;
 }
 
+
 function login($username, $password)
 {
     ## URL ##
     $url_login = 'https://www.instagram.com/accounts/login/ajax/';
     $url_ig = 'https://www.instagram.com/accounts/login/';
     #########
+
     ## GET COOKIE SEBELUM LOGIN ##
     $get = curl($url_ig);
     $cookie = fetchCurlCookies($get);
     $csrf = $cookie['csrftoken'];
     $mid = $cookie['mid'];
     ############
+
     ## HEADER LOGIN ##
     $header = array(
         'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-        'X-CSRFToken: ' . $csrf,
+        'X-CSRFToken: '.$csrf,
         'Content-Type: application/x-www-form-urlencoded',
-        'Cookie: rur=FTW; mid=' . $mid . '; csrftoken=' . $csrf . '',
+        'Cookie: rur=FTW; mid='.$mid.'; csrftoken='.$csrf.'',
     );
     ###########
+
     ## BODY LOGIN ##
-    $body = 'username=' . $username . '&password=' . $password . '&queryParams=%7B%7D&optIntoOneTap=false';
+    $body = 'username='.$username.'&password='.$password.'&queryParams=%7B%7D&optIntoOneTap=false';
     #########
+
     ## LOGIN ##
     $post = curl($url_login, $body, $header);
     ###########
-    if (strpos($post, '{"authenticated": false'))
-    {
 
+    if (strpos($post, '{"authenticated": false')) {
+        $a = getStr($post, '{', '}');
+	$b = '{'.$a.'}';
         $data = array(
             'action' => 'login',
             'status' => 'error',
             'username' => $username,
+	    'details' => $b, 
         );
 
-    }
-    elseif (strpos($post, '{"authenticated": true'))
-    {
+    }elseif(strpos($post, '{"authenticated": true')){
 
         $cookie_log = fetchCurlCookies($post);
         $data = array(
 
             'action' => 'login',
             'status' => 'success',
-            'username' => $username,
+            'username' => $username, 
             'csrftoken' => $cookie_log['csrftoken'],
             'sessionid' => $cookie_log['sessionid'],
         );
 
-    }
-    else
-    {
+    }else{
 
         $data = $post;
     }
@@ -297,27 +272,24 @@ function login($username, $password)
 
 function comment($id, $session, $text)
 {
-    $url = 'https://www.instagram.com/web/comments/' . $id . '/add/';
+    $url = 'https://www.instagram.com/web/comments/'.$id.'/add/';
     $header = array(
-        'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-        'X-CSRFToken: ' . $session['csrftoken'],
-        'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-    );
-    $body = 'comment_text=' . $text . '&replied_to_comment_id=';
-    $post = curlNoHeader($url, $body, $header);
+            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+            'X-CSRFToken: '.$session['csrftoken'],
+            'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+        );
+    $body = 'comment_text='.$text.'&replied_to_comment_id=';
+    $post = curlNoHeader($url,$body,$header);
     $result = json_decode($post);
-    if (strpos($post, 'Please wait'))
-    {
-
+    if (strpos($post, 'Please wait')) {
+        
         $data = array(
             'action' => 'comment',
             'status' => 'error',
             'details' => 'Please wait a few minutes before you try again'
         );
 
-    }
-    elseif (strpos($post, '"status": "ok"'))
-    {
+    }elseif (strpos($post, '"status": "ok"')) {
 
         $data = array(
             'action' => 'comment',
@@ -325,9 +297,7 @@ function comment($id, $session, $text)
             'text' => $result->text
         );
 
-    }
-    else
-    {
+    }else{
 
         $data = array(
             'action' => 'comment',
@@ -336,188 +306,153 @@ function comment($id, $session, $text)
         );
     }
 
+
     return $data;
 }
+
 
 function like($id, $session)
 {
-    if (isset($id))
-    {
-        $url = 'https://www.instagram.com/web/likes/' . $id . '/like/';
+    if (isset($id)) {
+        $url = 'https://www.instagram.com/web/likes/'.$id.'/like/';
         $header = array(
-            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-            'X-CSRFToken: ' . $session['csrftoken'],
-            'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-        );
-        $post = curl($url, 1, $header);
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
+        $post = curl($url,1,$header);
 
-        $data = (strpos($post, "Error")) ? array(
-            "media" => $id,
-            "action" => "like",
-            "status" => "error"
-        ) : array(
-            "media" => $id,
-            "action" => "like",
-            "status" => "success"
-        );
+        $data = (strpos($post, "Error")) ? array("media" => $id, "action" => "like", "status" => "error") : array("media" => $id, "action" => "like", "status" => "success");
+    }else{
+
+        $data = array("media" => $id, "status" => "error", "details" => "media not found");
     }
-    else
-    {
-
-        $data = array(
-            "media" => $id,
-            "status" => "error",
-            "details" => "media not found"
-        );
-    }
-
+    
     return $data;
 }
+
 
 function unlike($id, $session)
 {
-    if (isset($id))
-    {
-        $url = 'https://www.instagram.com/web/likes/' . $id . '/unlike/';
+    if (isset($id)) {
+        $url = 'https://www.instagram.com/web/likes/'.$id.'/unlike/';
         $header = array(
-            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-            'X-CSRFToken: ' . $session['csrftoken'],
-            'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-        );
-        $post = curl($url, 1, $header);
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
+        $post = curl($url,1,$header);
 
-        $data = (strpos($post, "Error")) ? array(
-            "media" => $id,
-            "action" => "unlike",
-            "status" => "error"
-        ) : array(
-            "media" => $id,
-            "action" => "unlike",
-            "status" => "success"
-        );
+        $data = (strpos($post, "Error")) ? array("media" => $id, "action" => "unlike", "status" => "error") : array("media" => $id, "action" => "unlike", "status" => "success");
+    }else{
+
+        $data = array("media" => $id, "status" => "error", "details" => "media not found");
     }
-    else
-    {
-
-        $data = array(
-            "media" => $id,
-            "status" => "error",
-            "details" => "media not found"
-        );
-    }
-
+    
     return $data;
 }
+
 
 function unfollow($username, $session)
 {
     $profile = findProfile($username);
-    if (isset($profile['id']))
-    {
+    if (isset($profile['id'])) {
         $id = $profile['id'];
-        $url = 'https://www.instagram.com/web/friendships/' . $id . '/unfollow/';
+        $url = 'https://www.instagram.com/web/friendships/'.$id.'/unfollow/';
         $header = array(
-            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-            'X-CSRFToken: ' . $session['csrftoken'],
-            'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-        );
-        $post = curl($url, 1, $header);
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
+        $post = curl($url,1,$header);
 
-        $data = (strpos($post, "Error")) ? array(
-            "username" => $username,
-            "action" => "unfollow",
-            "status" => "error"
-        ) : array(
-            "username" => $username,
-            "action" => "unfollow",
-            "status" => "success"
-        );
+        $data = (strpos($post, "Error")) ? array("username" => $username, "action" => "unfollow", "status" => "error") : array("username" => $username, "action" => "unfollow", "status" => "success");
+    }else{
+
+        $data = array("username" => $username, "status" => "error", "details" => "username not found");
     }
-    else
-    {
+    
+    return $data;
+}
 
-        $data = array(
-            "username" => $username,
-            "status" => "error",
-            "details" => "username not found"
-        );
-    }
+function unfollows($username, $session)
+{
+        $id = $username;
+        $url = 'https://www.instagram.com/web/friendships/'.$id.'/unfollow/';
+        $header = array(
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
+        $post = curl($url,1,$header);
 
+        $data = (strpos($post, "Error")) ? array("username" => $username, "action" => "unfollow", "status" => "error") : array("username" => $username, "action" => "unfollow", "status" => "success");
+    
     return $data;
 }
 
 function follow($username, $session)
 {
     $profile = findProfile($username, $session);
-    if (isset($profile['id']))
-    {
+    if (isset($profile['id'])) {
 
         $id = $profile['id'];
-        $url = 'https://www.instagram.com/web/friendships/' . $id . '/follow/';
+        $url = 'https://www.instagram.com/web/friendships/'.$id.'/follow/';
         $header = array(
-            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-            'X-CSRFToken: ' . $session['csrftoken'],
-            'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-        );
-        if ($profile['is_follow'] == 'true')
-        {
-
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
+        if ($profile['is_follow'] == 'true') {
+            
             $data = array(
                 'status' => 'error',
-                'details' => 'already follow'
+                'details' => 'already to follow',
+                'sleep' => 5,
             );
-        }
-        else
-        {
+        }else{
 
-            $post = curl($url, 1, $header);
-            $data_ouput = getStr($post, '<script type="text/javascript">window._sharedData = ', ';</script>');
-            $data_array = json_decode($data_ouput);
-            $result = $data_array
-                ->entry_data
-                ->ProfilePage['0']
-                ->graphql->user;
-            $is_follow = ($result->followed_by_viewer) ? 'true' : 'false';
-            if (strpos($post, 'Location: https://www.instagram.com/accounts/login/') && strpos($post, '302 Found'))
-            {
-
+            $post = curl($url,1,$header);
+			$data_ouput = getStr($post, '<script type="text/javascript">window._sharedData = ', ';</script>');
+			$data_array = json_decode($data_ouput);
+			$result = $data_array->entry_data->ProfilePage['0']->graphql->user;
+			$is_follow = ($result->followed_by_viewer) ? 'true' : 'false' ;
+            if (strpos($post, 'Location: https://www.instagram.com/accounts/login/') && strpos($post, '302 Found')) {
                 $data = array(
                     'status' => 'error',
-                    'details' => 'you are note logged in'
+                    'details' => 'you are note logged in',
+                     'sleep' => 5,
                 );
-            }
-            elseif ($is_follow == 'true')
-            {
-
+            }elseif ($is_follow == 'true') {
+                
                 $data = array(
                     'username' => $username,
                     'action' => 'follow',
                     'status' => 'success',
                 );
-            }
-            else
-            {
-                $a = getStr($post, '{', '}');
-                $b = '{' . $a . '}';
-                //  $c = json_decode($b);
+            }else{
+			$a = getStr($post, '{', '}');
+			$b = '{'.$a.'}';
+		//	$c = json_decode($b);
                 $data = array(
                     'username' => $username,
                     'action' => 'follow',
                     'status' => 'error',
-                    'details' => $b,
+                    'details' => $b." | Throttled! Resting during 12 hours before try again.",
+                    'sleep' => 43200,
                 );
             }
         }
 
-    }
-    else
-    {
+    }else{
 
+        
         $data = array(
             'status' => 'error',
             'username' => $username,
             'action' => 'follow',
             'details' => 'username not found',
+             'sleep' => 5,
         );
     }
 
@@ -526,14 +461,12 @@ function follow($username, $session)
 
 function followById($id, $session)
 {
-    $url_info = 'https://i.instagram.com/api/v1/users/' . $id . '/info/';
+    $url_info = 'https://i.instagram.com/api/v1/users/'.$id.'/info/';
     $info = curlNoHeader($url_info);
     $data_info = json_decode($info);
-    $username = $data_info
-        ->user->username;
+    $username = $data_info->user->username;
 
-    if (strpos($info, 'Page Not Found'))
-    {
+    if (strpos($info, 'Page Not Found')) {
 
         $data = array(
             'status' => 'error',
@@ -541,39 +474,32 @@ function followById($id, $session)
             'action' => 'follow',
             'details' => 'username not found',
         );
+        
+    }else{
 
-    }
-    else
-    {
-
-        $url = 'https://www.instagram.com/web/friendships/' . $id . '/follow/';
+        $url = 'https://www.instagram.com/web/friendships/'.$id.'/follow/';
         $header = array(
-            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-            'X-CSRFToken: ' . $session['csrftoken'],
-            'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-        );
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
 
-        $post = curl($url, 1, $header);
-        if (strpos($post, 'Location: https://www.instagram.com/accounts/login/') && strpos($post, '302 Found'))
-        {
-
+        $post = curl($url,1,$header);
+        if (strpos($post, 'Location: https://www.instagram.com/accounts/login/') && strpos($post, '302 Found')) {
+            
             $data = array(
                 'status' => 'error',
                 'details' => 'you are note logged in'
             );
-        }
-        elseif (strpos($post, 'Location: https://www.instagram.com/' . $username) && strpos($post, '302 Found'))
-        {
-
+        }elseif (strpos($post, 'Location: https://www.instagram.com/'.$username) && strpos($post, '302 Found')) {
+            
             $data = array(
                 'username' => $username,
                 'action' => 'follow',
                 'status' => 'success',
             );
 
-        }
-        elseif ($profile['is_follow'] == 'true')
-        {
+        }elseif($profile['is_follow'] == 'true'){
 
             $data = array(
                 'username' => $username,
@@ -581,9 +507,7 @@ function followById($id, $session)
                 'status' => 'error',
                 'details' => 'already follow',
             );
-        }
-        else
-        {
+        }else{
 
             $data = array(
                 'username' => $username,
@@ -601,117 +525,80 @@ function followById($id, $session)
 function block($username, $session)
 {
     $profile = findProfile($username);
-    if (isset($profile['id']))
-    {
+    if (isset($profile['id'])) {
         $id = $profile['id'];
-        $url = 'https://www.instagram.com/web/friendships/' . $id . '/block/';
+        $url = 'https://www.instagram.com/web/friendships/'.$id.'/block/';
         $header = array(
-            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-            'X-CSRFToken: ' . $session['csrftoken'],
-            'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-        );
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
 
-        $post = curl($url, 1, $header);
-        $data = (strpos($post, '{"status": "ok"}')) ? array(
-            "username_target" => $username,
-            "action" => "block",
-            "status" => "success"
-        ) : array(
-            "username_target" => $username,
-            "action" => "block",
-            "status" => "error"
-        );
+        $post = curl($url,1,$header);
+        $data = (strpos($post, '{"status": "ok"}')) ? array("username_target" => $username, "action" => "block", "status" => "success") : array("username_target" => $username, "action" => "block", "status" => "error");
+    }else{
+
+        $data = array("username" => $username, "status" => "error", "details" => "username not found");
     }
-    else
-    {
-
-        $data = array(
-            "username" => $username,
-            "status" => "error",
-            "details" => "username not found"
-        );
-    }
-
+    
     return $data;
 }
 
 function unblock($username, $session)
 {
     $profile = findProfile($username);
-    if (isset($profile['id']))
-    {
+    if (isset($profile['id'])) {
         $id = $profile['id'];
-        $url = 'https://www.instagram.com/web/friendships/' . $id . '/unblock/';
+        $url = 'https://www.instagram.com/web/friendships/'.$id.'/unblock/';
         $header = array(
-            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-            'X-CSRFToken: ' . $session['csrftoken'],
-            'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-        );
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
 
-        $post = curl($url, 1, $header);
-        $data = (strpos($post, '{"status": "ok"}')) ? array(
-            "username_target" => $username,
-            "action" => "unblock",
-            "status" => "success"
-        ) : array(
-            "username_target" => $username,
-            "action" => "unblock",
-            "status" => "error"
-        );
+        $post = curl($url,1,$header);
+        $data = (strpos($post, '{"status": "ok"}')) ? array("username_target" => $username, "action" => "unblock", "status" => "success") : array("username_target" => $username, "action" => "unblock", "status" => "error");
+    }else{
+
+        $data = array("username" => $username, "status" => "error", "details" => "username not found");
     }
-    else
-    {
-
-        $data = array(
-            "username" => $username,
-            "status" => "error",
-            "details" => "username not found"
-        );
-    }
-
+    
     return $data;
 }
 
 function deletePost($id, $session)
 {
     $data = array();
-    $url = 'https://www.instagram.com/create/' . $id . '/delete/';
+    $url = 'https://www.instagram.com/create/'.$id.'/delete/';
     $header = array(
-        'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-        'X-CSRFToken: ' . $session['csrftoken'],
-        'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-    );
-    $delete = curl($url, 1, $header);
-    if (strpos($delete, 'This page could not be loaded.'))
-    {
-
+            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+            'X-CSRFToken: '.$session['csrftoken'],
+            'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+        );
+    $delete = curl($url,1,$header);
+    if (strpos($delete, 'This page could not be loaded.')) {
+        
         $data['status'] = 'error';
-        $data['details'] = 'make sure you already login';
-    }
-    elseif (strpos($delete, '{"did_delete": true, "status": "ok"}'))
-    {
-
+        $data['details'] = 'make sure you already login'; 
+    }elseif (strpos($delete, '{"did_delete": true, "status": "ok"}')) {
+        
         $data['status'] = 'success';
         $data['action'] = 'delete';
         $data['id'] = $id;
-    }
-    else
-    {
+    }else{
 
         $data['status'] = 'error';
-        $data['details'] = 'unexpected error, please contact Admin';
+        $data['details'] = 'unexpected error, please contact Admin'; 
 
     }
 
     return $data;
 }
 
-function getPassword($prompt = "[?] Enter Password: ")
-{
+function getPassword($prompt = "Enter Password: ") {
 
-    if (OS == 'linux')
-    {
-
+    if (OS == 'linux') {
+        
         echo $prompt;
 
         system('stty -echo');
@@ -720,20 +607,17 @@ function getPassword($prompt = "[?] Enter Password: ")
 
         system('stty echo');
 
-    }
-    else
-    {
+    }else{
 
         echo $prompt;
         $password = trim(fgets(STDIN));
     }
-
+    
     return $password;
-
+    
 }
 
-function getUsername($prompt = "[?] Enter Username: ")
-{
+function getUsername($prompt = "Enter Username: ") {
     echo $prompt;
 
     $username = trim(fgets(STDIN));
@@ -741,8 +625,7 @@ function getUsername($prompt = "[?] Enter Username: ")
     return $username;
 }
 
-function getComment($prompt = "[?] Enter Comment Text: ")
-{
+function getComment($prompt = "Enter Comment Text: ") {
     echo $prompt;
 
     $text = trim(fgets(STDIN));
@@ -754,123 +637,88 @@ function getFollowingLink($username, $count, $after = '')
 {
 
     $profile = findProfile($username);
-    if (isset($profile['id']))
-    {
+    if (isset($profile['id'])) {
 
         $accountId = $profile['id'];
         $url_folls = 'https://www.instagram.com/graphql/query/?query_id=17874545323001329&id={{accountId}}&first={{count}}&after={{after}}';
-        $url = str_replace('{{accountId}}', urlencode($accountId) , $url_folls);
-        $url = str_replace('{{count}}', urlencode($count) , $url);
-        if ($after === '')
-        {
+        $url = str_replace('{{accountId}}', urlencode($accountId), $url_folls);
+        $url = str_replace('{{count}}', urlencode($count), $url);
+        if ($after === '') {
             $url = str_replace('&after={{after}}', '', $url);
-        }
-        else
-        {
-            $url = str_replace('{{after}}', urlencode($after) , $url);
+        } else {
+            $url = str_replace('{{after}}', urlencode($after), $url);
         }
 
-    }
-    else
-    {
+    }else{
 
         $url = '';
     }
-
+    
     return $url;
 }
 
 function getFollowersLink($username, $count, $after = '')
 {
 
-    $profile = findProfile($username);
-    if (isset($profile['id']))
-    {
-
-        $accountId = $profile['id'];
-        $url_folls = 'https://www.instagram.com/graphql/query/?query_id=17851374694183129&id={{accountId}}&first={{count}}&after={{after}}';
-        $url = str_replace('{{accountId}}', urlencode($accountId) , $url_folls);
-        $url = str_replace('{{count}}', urlencode($count) , $url);
-        if ($after === '')
-        {
-            $url = str_replace('&after={{after}}', '', $url);
+        $accountId = $username;
+        $url_folls = 'https://www.instagram.com/graphql/query/?query_hash=c76146de99bb02f6415203be841dd25a&variables={"id":"{{accountId}}","include_reel":true,"fetch_mutual":false,"first":{{count}},"after":"{{after}}"}';
+        $url = str_replace('{{accountId}}', urlencode($accountId), $url_folls);
+        $url = str_replace('{{count}}', urlencode($count), $url);
+        if ($after === '') {
+            $url = str_replace(',"after":"{{after}}"', '', $url);
+        } else {
+            $url = str_replace('{{after}}', urlencode($after), $url);
         }
-        else
-        {
-            $url = str_replace('{{after}}', urlencode($after) , $url);
-        }
-
-    }
-    else
-    {
-
-        $url = '';
-    }
-
+    
     return $url;
 }
 
-function getFollowers($username, $login, $count = 20, $pageSize = 20)
+function getFollowers($username, $login, $count = 150, $pageSize = 20)
 {
     $index = 0;
     $accounts = [];
     $endCursor = '';
     $header = array();
-    $header[] = 'Cookie: sessionid=' . $login['sessionid'] . ';';
-    if ($count < $pageSize)
-    {
+    $header[] = 'Cookie: sessionid='.$login['sessionid'].';';
+    if ($count < $pageSize) {
 
-        echo 'Count must be greater than or equal to page size.' . PHP_EOL;
+        echo 'Count must be greater than or equal to page size.'.PHP_EOL;
     }
-    while (true)
-    {
+    while (true) {
 
-        $url = getFollowersLink($username, 20, $endCursor);
-
-        if ($url != '')
-        {
-
+        $url = getFollowersLink($username, 150, $endCursor);
+        
+        if ($url != '') {
+            
             $response = curlNoHeader($url, 0, $header);
         }
 
         $data = json_decode($response);
-        $pageInfo = $data
-            ->data
-            ->user->edge_followed_by;
+        $pageInfo = $data->data->user->edge_followed_by;
 
-        if ($pageInfo->count == 0)
-        {
-
+        if ($pageInfo->count == 0) {
+            
             return $accounts;
         }
-        if ($pageInfo->edges == 0)
-        {
-
+        if ($pageInfo->edges == 0) {
+            
             echo 'Failed to get followers of ' . $username . '. The account is private.';
         }
 
-        foreach ($pageInfo->edges as $edge)
-        {
+        foreach ($pageInfo->edges as $edge) {
             $accounts[] = $edge->node;
             $index++;
-            if ($index >= $count)
-            {
+            if ($index >= $count) {
                 break 2;
             }
         }
 
-        if ($pageInfo
-            ->page_info
-            ->has_next_page)
-        {
-
-            $endCursor = $pageInfo
-                ->page_info->end_cursor;
-
-        }
-        else
-        {
-
+        if ($pageInfo->page_info->has_next_page) {
+           
+            $endCursor = $pageInfo->page_info->end_cursor;
+        
+        } else {
+            
             $endCursor = '';
             break;
         }
@@ -885,61 +733,46 @@ function getFollowing($username, $login, $count = 20, $pageSize = 20)
     $accounts = [];
     $endCursor = '';
     $header = array();
-    $header[] = 'Cookie: sessionid=' . $login['sessionid'] . ';';
-    if ($count < $pageSize)
-    {
+    $header[] = 'Cookie: sessionid='.$login['sessionid'].';';
+    if ($count < $pageSize) {
 
-        echo 'Count must be greater than or equal to page size.' . PHP_EOL;
+        echo 'Count must be greater than or equal to page size.'.PHP_EOL;
     }
-    while (true)
-    {
+    while (true) {
 
         $url = getFollowingLink($username, 20, $endCursor);
-
-        if ($url != '')
-        {
-
+        
+        if ($url != '') {
+            
             $response = curlNoHeader($url, 0, $header);
         }
 
         $data = json_decode($response);
-        $pageInfo = $data
-            ->data
-            ->user->edge_follow;
+        $pageInfo = $data->data->user->edge_follow;
 
-        if ($pageInfo->count == 0)
-        {
-
+        if ($pageInfo->count == 0) {
+            
             return $accounts;
         }
-        if ($pageInfo->edges == 0)
-        {
-
+        if ($pageInfo->edges == 0) {
+            
             return 'Failed to get followers of ' . $username . '. The account is private.';
         }
 
-        foreach ($pageInfo->edges as $edge)
-        {
+        foreach ($pageInfo->edges as $edge) {
             $accounts[] = $edge->node;
             $index++;
-            if ($index >= $count)
-            {
+            if ($index >= $count) {
                 break 2;
             }
         }
 
-        if ($pageInfo
-            ->page_info
-            ->has_next_page)
-        {
-
-            $endCursor = $pageInfo
-                ->page_info->end_cursor;
-
-        }
-        else
-        {
-
+        if ($pageInfo->page_info->has_next_page) {
+           
+            $endCursor = $pageInfo->page_info->end_cursor;
+        
+        } else {
+            
             $endCursor = '';
             break;
         }
@@ -950,7 +783,7 @@ function getFollowing($username, $login, $count = 20, $pageSize = 20)
 
 function getAccountMediasJsonLink($variables)
 {
-    return str_replace('{variables}', urlencode($variables) , 'https://www.instagram.com/graphql/query/?query_hash=42323d64886122307be10013ad2dcc44&variables={variables}');
+    return str_replace('{variables}', urlencode($variables), 'https://www.instagram.com/graphql/query/?query_hash=42323d64886122307be10013ad2dcc44&variables={variables}');
 }
 
 function getMedias($username, $login, $count = 0, $maxId = '')
@@ -961,48 +794,36 @@ function getMedias($username, $login, $count = 0, $maxId = '')
     $medias = [];
     $isMoreAvailable = true;
     $header = array();
-    $header[] = 'Cookie: sessionid=' . $login['sessionid'] . ';';
-    while ($index < $count && $isMoreAvailable)
-    {
-        $variables = json_encode(['id' => (string)$id, 'first' => (string)$count, 'after' => (string)$maxId]);
+    $header[] = 'Cookie: sessionid='.$login['sessionid'].';';
+    while ($index < $count && $isMoreAvailable) {
+        $variables = json_encode([
+            'id' => (string)$id,
+            'first' => (string)$count,
+            'after' => (string)$maxId
+        ]);
 
         $url = getAccountMediasJsonLink($variables);
         $response = curlNoHeader($url, 0, $header);
 
         $obj = json_decode($response);
-        $nodes = $obj
-            ->data
-            ->user
-            ->edge_owner_to_timeline_media->edges;
+        $nodes = $obj->data->user->edge_owner_to_timeline_media->edges;
         // fix - count takes longer/has more overhead
-        if (!isset($nodes) || empty($nodes))
-        {
+        if (!isset($nodes) || empty($nodes)) {
             return [];
         }
-
-        foreach ($nodes as $mediaObject)
-        {
-            if ($index === $count)
-            {
+        
+        foreach ($nodes as $mediaObject) {
+            if ($index === $count) {
                 return $medias;
             }
             $medias[] = $mediaObject->node;
             $index++;
         }
-        if (empty($nodes) || !isset($nodes))
-        {
+        if (empty($nodes) || !isset($nodes)) {
             return $medias;
         }
-        $maxId = $obj
-            ->data
-            ->user
-            ->edge_owner_to_timeline_media
-            ->page_info->end_cursor;
-        $isMoreAvailable = $obj
-            ->data
-            ->user
-            ->edge_owner_to_timeline_media
-            ->page_info->has_next_page;
+        $maxId = $obj->data->user->edge_owner_to_timeline_media->page_info->end_cursor;
+        $isMoreAvailable = $obj->data->user->edge_owner_to_timeline_media->page_info->has_next_page;
     }
     return $medias;
 }
@@ -1010,25 +831,20 @@ function getMedias($username, $login, $count = 0, $maxId = '')
 function getMedia($username, $login, $no)
 {
     $media = getMedias($username, $login, $no);
-    $dataObj = $media[$no - 1];
-    if ($dataObj)
-    {
-
-        $vid = ($dataObj->is_video == 1) ? "yes" : "no";
+    $dataObj = $media[$no-1];
+    if ($dataObj) {
+        
+        $vid = ($dataObj->is_video == 1) ? "yes" : "no" ;
         $data = array(
             'status' => 'success',
             'id' => $dataObj->id,
-            'page' => 'https://instagram.com/p/' . $dataObj->shortcode,
-            'comments' => $dataObj
-                ->edge_media_to_comment->count,
-            'likes' => $dataObj
-                ->edge_media_preview_like->count,
+            'page' => 'https://instagram.com/p/'.$dataObj->shortcode,
+            'comments' => $dataObj->edge_media_to_comment->count,
+            'likes' => $dataObj->edge_media_preview_like->count,
             'url_display' => $dataObj->display_url,
             'is_video' => $vid
         );
-    }
-    else
-    {
+    }else{
 
         $data = array(
             'status' => 'error',
@@ -1041,94 +857,60 @@ function getMedia($username, $login, $no)
 
 function getPost($username, $session = 0, $no = 0)
 {
-    $url = 'https://instagram.com/' . $username;
-    if (!$session == 0)
-    {
+    $url = 'https://instagram.com/'.$username;
+    if (!$session == 0) {
 
         $header = array(
-            'Cookie: sessionid=' . $session['sessionid'] . ';',
+            'Cookie: sessionid='.$session['sessionid'].';',
         );
-        $get = curl($url, 0, $header);
+        $get = curl($url,0,$header);
 
-    }
-    else
-    {
+    }else{
 
         $get = curl($url);
     }
-
-    if (strpos($get, 'The link you followed may be broken, or the page may have been removed.'))
-    {
+    
+    if (strpos($get, 'The link you followed may be broken, or the page may have been removed.')) {
 
         $data = array(
             'status' => 'error',
             'details' => 'user not found'
         );
-
-    }
-    else
-    {
+    
+    }else{
 
         $data_ouput = getStr($get, '<script type="text/javascript">window._sharedData = ', ';</script>');
         $data_array = json_decode($data_ouput);
-        $result = $data_array
-            ->entry_data
-            ->ProfilePage['0']
-            ->graphql
-            ->user
-            ->edge_owner_to_timeline_media->edges;
-        if (empty($result) && $data_array
-            ->entry_data
-            ->ProfilePage['0']
-            ->graphql
-            ->user
-            ->edge_owner_to_timeline_media->count >= 1)
-        {
-
+        $result = $data_array->entry_data->ProfilePage['0']->graphql->user->edge_owner_to_timeline_media->edges;
+        if (empty($result) && $data_array->entry_data->ProfilePage['0']->graphql->user->edge_owner_to_timeline_media->count >= 1) {
+            
             $data = array(
                 'status' => 'error',
                 'details' => 'account private'
             );
 
-        }
-        elseif ($data_array
-            ->entry_data
-            ->ProfilePage['0']
-            ->graphql
-            ->user
-            ->edge_owner_to_timeline_media->count <= 0)
-        {
-
+        }elseif ($data_array->entry_data->ProfilePage['0']->graphql->user->edge_owner_to_timeline_media->count <= 0) {
+            
             $data = array(
                 'status' => 'error',
                 'details' => 'no post'
             );
 
-        }
-        else
-        {
+        }else{
 
-            $result = $data_array
-                ->entry_data
-                ->ProfilePage['0']
-                ->graphql
-                ->user
-                ->edge_owner_to_timeline_media
-                ->edges[$no]->node;
-            $vid = ($result->is_video == 1) ? "yes" : "no";
-
+            $result = $data_array->entry_data->ProfilePage['0']->graphql->user->edge_owner_to_timeline_media->edges[$no]->node;
+            $vid = ($result->is_video == 1) ? "yes" : "no" ;
+        
             $data = array(
                 'status' => 'success',
                 'id' => $result->id,
-                'page' => 'https://instagram.com/p/' . $result->shortcode,
-                'comments' => $result
-                    ->edge_media_to_comment->count,
-                'likes' => $result
-                    ->edge_liked_by->count,
+                'page' => 'https://instagram.com/p/'.$result->shortcode,
+                'comments' => $result->edge_media_to_comment->count,
+                'likes' => $result->edge_liked_by->count,
                 'url_display' => $result->display_url,
                 'is_video' => $vid
             );
-
+            
         }
     }
 
@@ -1137,90 +919,67 @@ function getPost($username, $session = 0, $no = 0)
 
 function activity($session)
 {
-    $url = 'https://www.instagram.com/accounts/activity/';
-    $header = array(
-        'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-        'X-CSRFToken: ' . $session['csrftoken'],
-        'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-    );
-    $post = curl($url, 1, $header);
-    $data_ouput = getStr($post, '<script type="text/javascript">window._sharedData = ', ';</script>');
-    $data_array = json_decode($data_ouput);
-    $result = $data_array
-        ->entry_data
-        ->ActivityFeed['0']
-        ->graphql
-        ->user
-        ->activity_feed->edge_web_activity_feed;
-    foreach ($result->edges as $items)
-    {
-        $data[] = array(
-            'status' => 'success',
-            'username' => $items
-                ->node
-                ->user->username,
-            'type' => $items
-                ->node->type,
-            'text' => $items
-                ->node->text,
-        );
-    }
+        $url = 'https://www.instagram.com/accounts/activity/';
+        $header = array(
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
+            $post = curl($url,1,$header);
+			$data_ouput = getStr($post, '<script type="text/javascript">window._sharedData = ', ';</script>');
+            $data_array = json_decode($data_ouput);
+			$result = $data_array->entry_data->ActivityFeed['0']->graphql->user->activity_feed->edge_web_activity_feed;
+			foreach ($result->edges as $items) {
+			$data[] = array(
+                'status' => 'success',
+                'username' => $items->node->user->username,
+                'type' => $items->node->type,
+                'text' => $items->node->text,
+            );
+			}
     return $data;
 }
 
 function getHome($session)
 {
-    $url = 'https://www.instagram.com/';
-    $header = array(
-        'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-        'X-CSRFToken: ' . $session['csrftoken'],
-        'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-    );
-    $post = curl($url, 1, $header);
-    $data_ouput = getStr($post, "window.__additionalDataLoaded('feed',", ");</script>");
-    $data_array = json_decode($data_ouput);
-    $result = $data_array
-        ->user->edge_web_feed_timeline;
-    foreach ($result->edges as $items)
-    {
-        $data[] = array(
-            'status' => 'success',
-            'username' => $items
-                ->node
-                ->owner->username,
-            'id' => $items
-                ->node->id,
-            'link' => 'https://instagram.com/p/' . $items
-                ->node->shortcode,
-            'text' => $items
-                ->node
-                ->edge_media_to_caption
-                ->edges[0]
-                ->node
-                ->text
-        );
-    }
+        $url = 'https://www.instagram.com/';
+        $header = array(
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
+            $post = curl($url,1,$header);
+			$data_ouput = getStr($post, "window.__additionalDataLoaded('feed',", ");</script>");
+            $data_array = json_decode($data_ouput);
+			$result = $data_array->user->edge_web_feed_timeline;
+			foreach ($result->edges as $items) {
+			$data[] = array(
+                'status' => 'success',
+                'username' => $items->node->owner->username,
+                'id' => $items->node->id,
+                'link' => 'https://instagram.com/p/'.$items->node->shortcode,
+                'text' => $items->node->edge_media_to_caption->edges[0]->node->text
+			);
+			}
     return $data_ouput;
 }
 
 function onetap($session)
 {
-    $url = 'https://www.instagram.com/accounts/onetap/?next=%2F';
-    $header = array(
-        'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
-        'X-CSRFToken: ' . $session['csrftoken'],
-        'Cookie: csrftoken=' . $session['csrftoken'] . '; sessionid=' . $session['sessionid']
-    );
-    $post = curl($url, 1, $header);
-    $data_ouput = getStr($post, '<script type="text/javascript">window._sharedData = ', ';</script>');
-    $data_array = json_decode($data_ouput);
-    $result = $data_array
-        ->config->viewer;
-    $data = array(
-        'status' => 'success',
-        'name' => $result->full_name,
-        'username' => $result->username,
-    );
+        $url = 'https://www.instagram.com/accounts/onetap/?next=%2F';
+        $header = array(
+                'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A402 Safari/604.1',
+                'X-CSRFToken: '.$session['csrftoken'],
+                'Cookie: csrftoken='.$session['csrftoken'].'; sessionid='.$session['sessionid']
+            );
+            $post = curl($url,1,$header);
+			$data_ouput = getStr($post, '<script type="text/javascript">window._sharedData = ', ';</script>');
+            $data_array = json_decode($data_ouput);
+			$result = $data_array->config->viewer;
+			$data = array(
+                'status' => 'success',
+                'name' => $result->full_name,
+                'username' => $result->username,
+            );
     return $data;
 }
-
